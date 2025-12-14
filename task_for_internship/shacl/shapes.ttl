@@ -1,0 +1,82 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix fhkb: <http://www.example.com/genealogy.owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+fhkb:PersonShape
+    a sh:NodeShape ;
+    sh:targetClass fhkb:Person ;
+
+    sh:property [
+        sh:path fhkb:hasParent ;
+        sh:class fhkb:Person ;
+        sh:message "If a person has a parent, the parent must be a Person." ;
+    ] ;
+
+    sh:property [
+        sh:path fhkb:hasParent ;
+        sh:maxCount 2 ;
+        sh:message "A person can have at most two parents." ;
+    ] ;
+
+    sh:property [
+        sh:path fhkb:hasBirthYear ;
+        sh:datatype xsd:integer ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1000 ;
+        sh:maxInclusive 2025 ;
+        sh:message "Birth year must be a single integer between 1000 and 2025." ;
+    ] ;
+
+    sh:property [
+        sh:path fhkb:hasFather ;
+        sh:maxCount 1 ;
+        sh:class fhkb:Man ;
+        sh:message "A person can have at most one father, and the father must be a Man." ;
+    ] ;
+
+    sh:property [
+        sh:path fhkb:hasMother ;
+        sh:maxCount 1 ;
+        sh:class fhkb:Woman ;
+        sh:message "A person can have at most one mother, and the mother must be a Woman." ;
+    ] ;
+
+    sh:property [
+        sh:path fhkb:isSiblingOf ;
+        sh:class fhkb:Person ;
+        sh:message "A sibling must be a Person." ;
+    ] ;
+
+    sh:not [
+        sh:property [
+            sh:path fhkb:isSiblingOf ;
+            sh:hasValue sh:this ;
+        ]
+    ] ;
+.
+
+fhkb:MarriageShape
+    a sh:NodeShape ;
+    sh:targetClass fhkb:Marriage ;
+    sh:or (
+        [ sh:property [
+            sh:path fhkb:hasMalePartner ;
+            sh:minCount 1 ;
+        ] ]
+        [ sh:property [
+            sh:path fhkb:hasFemalePartner ;
+            sh:minCount 1 ;
+        ] ]
+    ) ;
+    sh:property [
+        sh:path fhkb:hasMalePartner ;
+        sh:class fhkb:Man ;
+        sh:message "Male partner in a marriage must be a Man." ;
+    ] ;
+    sh:property [
+        sh:path fhkb:hasFemalePartner ;
+        sh:class fhkb:Woman ;
+        sh:message "Female partner in a marriage must be a Woman." ;
+    ] ;
+.

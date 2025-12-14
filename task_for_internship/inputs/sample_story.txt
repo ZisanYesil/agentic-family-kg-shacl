@@ -1,0 +1,6 @@
+John Doe was born in 1980.
+His father is Michael Doe.
+His mother is Sarah Doe.
+Michael Doe was born in 1955.
+Sarah Doe was born in 1958.
+John Doe has parent Bob NotAPerson.
