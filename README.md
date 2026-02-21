@@ -51,7 +51,7 @@ The system consists of the following agents:
 
 ## Project Structure
 
-task_for_internship/
+src/
 ├── agents/
 │ ├── extractor.py
 │ ├── kg_builder.py
