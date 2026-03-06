@@ -6,7 +6,6 @@ This project implements an **agent-based pipeline** for constructing and validat
 The system extracts structured family facts, builds an RDF Knowledge Graph aligned with a
 genealogy ontology, validates it using SHACL constraints, and iteratively improves the graph
 based on validation feedback.
-
 ---
 
 ## Overview
@@ -107,7 +106,6 @@ runs/iteration_2.ttl
 ---
 
 ## How the Iterative Process Works
-
 1. Extract facts from the input text  
 2. Build an RDF Knowledge Graph  
 3. Validate the graph with SHACL constraints  
